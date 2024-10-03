@@ -21,7 +21,7 @@ npm run build
 
 Compile the code with a local server
 ```
-npm run watch
+npm run start
 ```
 
 

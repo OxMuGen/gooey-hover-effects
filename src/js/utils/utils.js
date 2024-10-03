@@ -6,7 +6,7 @@ export const clamp = (val, min = 0, max = 1) => Math.max(min, Math.min(max, val)
 export const map = (value, min1, max1, min2, max2) => min2 + (max2 - min2) * (value - min1) / (max1 - min1)
 
 export const getRatio = ({ x: w, y: h }, { width, height }, r = 0) => {
-    const m = multiplyMatrixAndPoint(rotateMatrix(THREE.Math.degToRad(r)), [w, h])
+    const m = multiplyMatrixAndPoint(rotateMatrix(THREE.MathUtils.degToRad(r)), [w, h])
     const originalRatio = {
         w: m[0] / width,
         h: m[1] / height,
@@ -40,6 +40,7 @@ export const wrap = (el, wrapper) => {
 
 
 export const unwrap = (content) => {
+    console.log('unwrao')
     for (let i = 0; i < content.length; i++) {
         const el     = content[i]
         const parent = el.parentNode

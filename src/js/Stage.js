@@ -1,4 +1,4 @@
-import { TweenMax as TM } from 'gsap/all'
+import gsap from 'gsap'
 import Scrollbar from 'smooth-scrollbar'
 import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll'
 import { map } from './utils/utils'
@@ -65,7 +65,7 @@ export default class Stage {
     onScroll({ limit, offset }) {
         this.progress = offset.x / limit.x
 
-        TM.to(this.$els.title, 0.3, { x: -this.progress * offsetTitle, force3D: true })
+        gsap.to(this.$els.title, { duration: 0.3, x: -this.progress * offsetTitle, force3D: true })
         this.updateScrollBar()
     }
 
@@ -74,17 +74,18 @@ export default class Stage {
 
     updateScrollBar() {
         const progress = map(this.progress * 100, 0, 100, 5, 100)
-        TM.to(this.$els.progress, 0.3, { xPercent: progress, force3D: true })
+        gsap.to(this.$els.progress, { duration: 0.3, xPercent: progress, force3D: true })
     }
 
     lockScroll({ lock }) {
         const duration = lock ? 0 : 1.8
 
-        TM.delayedCall(duration, () => {
+        gsap.delayedCall(duration, () => {
             this.Scroll.updatePluginOptions('horizontalScroll', {
                 events: lock ? [] : [/wheel/],
             })
-            TM.to(this.$els.progressCtn, 0.5, {
+            gsap.to(this.$els.progressCtn, {
+                duration:  0.5,
                 alpha: lock ? 0 : 1,
                 force3D: true,
             })

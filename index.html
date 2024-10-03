@@ -10,13 +10,11 @@
     <meta name="author" content="Arno Di Nunzio" />
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="https://use.typekit.net/lma7zwj.css">
-    <link rel="stylesheet" type="text/css" href="dist/app.css" />
     <script>
     document.documentElement.className = "js";
     var supportsCssVars = function() { var e, t = document.createElement("style"); return t.innerHTML = "root: { --tmp-var: bold; }", document.head.appendChild(t), e = !!(window.CSS && window.CSS.supports && window.CSS.supports("font-weight", "var(--tmp-var)")), t.parentNode.removeChild(t), e };
     supportsCssVars() || alert("Please view this demo in a modern browser that supports CSS Variables.");
     </script>
-    <script src="dist/app.js"></script>
 </head>
 
 <body class="demo-1">
@@ -24,9 +22,7 @@
         <div class="message">This is a hover effects demo, please view on desktop.</div>
         <div class="frame">
             <div class="frame__links">
-                <a href="https://github.com/Aqro/gooey-hover-codrops">Github</a>
-                <a href="http://tympanus.net/Tutorials/MotionHoverEffects/">Previous Demo</a>
-                <a href="https://tympanus.net/codrops/?p=43947">Article</a>
+                <a href="https://github.com/julienchang/gooey-hover-effects">Github</a>
             </div>
             <div class="frame__demos">Gooey hover effects</div>
         </div>
@@ -38,7 +34,7 @@
                         <article class="tile | js-tile">
                             <a href="#">
                                 <figure class="tile__fig">
-                                    <img src="dist/img/tiles/woods/base.jpg" data-hover="dist/img/tiles/woods/hover.jpg" alt="Woods & Forests" class="tile__img">
+                                    <img src="src/img/tiles/woods/base.jpg" data-hover="img/tiles/woods/hover.jpg" alt="Woods & Forests" class="tile__img">
                                 </figure>
                                 <div class="tile__content">
                                     <h2 class="tile__title | title title--medium ">Woods & <span class="title__offset title__offset--medium">Forests</span></h2>
@@ -53,7 +49,7 @@
                         <article class="tile | js-tile">
                             <a href="#">
                                 <figure class="tile__fig">
-                                    <img src="dist/img/tiles/rocks/base.jpg" data-hover="dist/img/tiles/rocks/hover.jpg" alt="Rocks & Mountains" class="tile__img">
+                                    <img src="src/img/tiles/rocks/base.jpg" data-hover="img/tiles/rocks/hover.jpg" alt="Rocks & Mountains" class="tile__img">
                                 </figure>
                                 <div class="tile__content">
                                     <h2 class="tile__title | title title--medium ">Rocks & <span class="title__offset title__offset--medium">Mountains</span></h2>
@@ -68,7 +64,7 @@
                         <article class="tile | js-tile">
                             <a href="#">
                                 <figure class="tile__fig">
-                                    <img src="dist/img/tiles/cities/base.jpg" data-hover="dist/img/tiles/cities/hover.jpg" alt="Cities & Skylines" class="tile__img">
+                                    <img src="src/img/tiles/cities/base.jpg" data-hover="img/tiles/cities/hover.jpg" alt="Cities & Skylines" class="tile__img">
                                 </figure>
                                 <div class="tile__content">
                                     <h2 class="tile__title | title title--medium ">Cities & <span class="title__offset title__offset--medium">Skylines</span>
@@ -85,7 +81,7 @@
                         <article class="tile | js-tile">
                             <a href="#">
                                 <figure class="tile__fig">
-                                    <img src="dist/img/tiles/deserts/base.jpg" data-hover="dist/img/tiles/deserts/hover.jpg" alt="SAND & DESERTS" class="tile__img">
+                                    <img src="src/img/tiles/deserts/base.jpg" data-hover="img/tiles/deserts/hover.jpg" alt="SAND & DESERTS" class="tile__img">
                                 </figure>
                                 <div class="tile__content">
                                     <h2 class="tile__title | title title--medium ">Sand & <span class="title__offset title__offset--medium">Deserts</span>
@@ -102,7 +98,7 @@
                         <article class="tile | js-tile">
                             <a href="#">
                                 <figure class="tile__fig">
-                                    <img src="dist/img/tiles/snow/base.jpg" data-hover="dist/img/tiles/snow/hover.jpg" alt="Snow & Mountains" class="tile__img">
+                                    <img src="src/img/tiles/snow/base.jpg" data-hover="img/tiles/snow/hover.jpg" alt="Snow & Mountains" class="tile__img">
                                 </figure>
                                 <div class="tile__content">
                                     <h2 class="tile__title | title title--medium ">Snow & <span class="title__offset title__offset--medium">Mountains</span>
@@ -137,6 +133,8 @@
         </aside>
         <canvas id="scene"></canvas>
     </main>
+    
+    <script type="module" src="src/js/index.js"></script>
 </body>
 
 </html>

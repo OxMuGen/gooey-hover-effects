@@ -1,6 +1,5 @@
-import { TweenMax as TM, Power2, Power3, Power4, Expo } from 'gsap/all'
-import { SplitText as ST } from './vendors/gsap/SplitText'
-import { wrap, unwrap, ev } from './utils/utils'
+import gsap from 'gsap'
+import { ev } from './utils/utils'
 
 export default class DetailView {
 
@@ -10,6 +9,7 @@ export default class DetailView {
             closeBtn: document.querySelector('.close-detail'),
             title: document.querySelector('.detail-view__title'),
         }
+        this.$els.text = this.$els.el.querySelectorAll('.detail-view__title, p')
 
         this.bindEvent()
     }
@@ -26,42 +26,40 @@ export default class DetailView {
     }
 
     onOpen() {
-        const title = this.$els.el.querySelector('.detail-view__title')
-        const text = this.$els.el.querySelectorAll('p')
         const { title: pageTitle } = APP.Stage.$els
 
-        this.stgs = new ST([title, text], { type: 'lines', linesClass: 'line' })
-
-        this.stgs.lines.forEach((l) => {
-            const div = document.createElement('div')
-            div.classList.add('line-ctn')
-            wrap(l, div)
-        })
-
-        TM.to(pageTitle, 0.5, {
+        gsap.to(pageTitle, {
+            duration: 0.5,
             alpha: 0,
             force3D: true,
         })
 
-        TM.fromTo(this.$els.closeBtn, 0.5, {
+        gsap.fromTo(this.$els.closeBtn, {
+            duration: 0.5,
             rotate: -45,
             scale: 0,
             alpha: 0,
         }, {
+            duration: 0.5,
             rotate: 0,
             scale: 1,
             alpha: 1,
-            ease: Power2.easeInOut,
+            ease: "power2.inOut",
             force3D: true,
         })
 
-        TM.staggerFromTo(this.stgs.lines, 0.8, {
+        gsap.fromTo(this.$els.text, {
+            duration: 0.8,
             yPercent: 100,
+            alpha: 0,
         }, {
+            duration: 0.8,
             yPercent: 0,
-            ease: Power3.easeInOut,
+            ease: "power3.inOut",
             force3D: true,
-        }, 0.5 / this.stgs.lines.length)
+            alpha: .7,
+            stagger:  0.5 / this.$els.text.length
+        })
 
         this.onToggleView()
     }
@@ -69,29 +67,34 @@ export default class DetailView {
     onClose() {
         const { title: pageTitle } = APP.Stage.$els
 
-        TM.to(pageTitle, 0.5, {
+        gsap.to(pageTitle, {
+            duration: 0.5,
             alpha: 0.1,
             force3D: true,
         })
 
-        TM.staggerTo(this.stgs.lines, 0.8, {
+        gsap.to(this.$els.text, {
+            duration: 0.8,
             yPercent: 100,
-            ease: Power3.easeInOut,
+            ease: "power3.inOut",
             force3D: true,
-        }, 0.5 / this.stgs.lines.length, () => {
-            this.onToggleView(false)
-            unwrap(this.stgs.lines)
+            alpha: 0,
+            stagger: 0.5 / this.$els.text.length,
+            onComplete: () => {
+                this.onToggleView(false)
+            }
         })
 
-        TM.to(this.$els.closeBtn, 0.5, {
+        gsap.to(this.$els.closeBtn, {
+            duration: 0.5,
             rotate: -45,
             scale: 0,
             alpha: 0,
-            ease: Power2.easeInOut,
+            ease: "power2.inOut",
             force3D: true,
         })
 
-        TM.delayedCall(0.3, () => {
+        gsap.delayedCall(0.3, () => {
             ev('toggleDetail', {
                 open: false,
                 force: true,
